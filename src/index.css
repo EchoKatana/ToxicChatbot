@@ -1,0 +1,259 @@
+/* ============================================
+   TOXIC CYBER CHATBOT - DESIGN SYSTEM
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Press+Start+2P&display=swap');
+
+:root {
+  /* Colors - Toxic Theme */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #141414;
+  --bg-tertiary: #1a1a1a;
+  
+  --toxic-green: #39ff14;
+  --toxic-purple: #bf00ff;
+  --toxic-pink: #ff006e;
+  --toxic-cyan: #00f5ff;
+  
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-dim: #666666;
+  
+  --danger: #ff0033;
+  --warning: #ffaa00;
+  
+  /* Gradients */
+  --gradient-toxic: linear-gradient(135deg, var(--toxic-green) 0%, var(--toxic-cyan) 100%);
+  --gradient-evil: linear-gradient(135deg, var(--toxic-purple) 0%, var(--toxic-pink) 100%);
+  
+  /* Shadows & Glows */
+  --glow-green: 0 0 20px rgba(57, 255, 20, 0.5), 0 0 40px rgba(57, 255, 20, 0.3);
+  --glow-purple: 0 0 20px rgba(191, 0, 255, 0.5), 0 0 40px rgba(191, 0, 255, 0.3);
+  --glow-pink: 0 0 20px rgba(255, 0, 110, 0.5), 0 0 40px rgba(255, 0, 110, 0.3);
+  
+  /* Typography */
+  --font-primary: 'Inter', sans-serif;
+  --font-pixel: 'Press Start 2P', cursive;
+  
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* ============================================
+   RESET & BASE STYLES
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-primary);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--toxic-green);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--toxic-cyan);
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.toxic-text {
+  color: var(--toxic-green);
+  text-shadow: var(--glow-green);
+}
+
+.evil-text {
+  background: var(--gradient-evil);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.pixel-text {
+  font-family: var(--font-pixel);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Glitch Effect */
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch:hover::before,
+.glitch:hover::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch:hover::before {
+  left: 2px;
+  text-shadow: -2px 0 var(--toxic-pink);
+  clip: rect(24px, 550px, 90px, 0);
+  animation: glitch-anim 3s infinite linear alternate-reverse;
+}
+
+.glitch:hover::after {
+  left: -2px;
+  text-shadow: -2px 0 var(--toxic-cyan);
+  clip: rect(85px, 550px, 140px, 0);
+  animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(50px, 9999px, 30px, 0); }
+  20% { clip: rect(90px, 9999px, 100px, 0); }
+  40% { clip: rect(10px, 9999px, 60px, 0); }
+  60% { clip: rect(70px, 9999px, 20px, 0); }
+  80% { clip: rect(30px, 9999px, 80px, 0); }
+  100% { clip: rect(60px, 9999px, 40px, 0); }
+}
+
+/* Shake Animation */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+.shake {
+  animation: shake 0.5s;
+}
+
+/* Pulse Glow */
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 5px var(--toxic-green), 0 0 10px var(--toxic-green);
+  }
+  50% { 
+    box-shadow: 0 0 20px var(--toxic-green), 0 0 40px var(--toxic-green);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+/* Typing Animation */
+@keyframes typing-dot {
+  0%, 20% { opacity: 0.3; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-5px); }
+  100% { opacity: 0.3; transform: translateY(0); }
+}
+
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
+
+.btn {
+  padding: var(--space-sm) var(--space-lg);
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-toxic {
+  background: var(--toxic-green);
+  color: var(--bg-primary);
+  box-shadow: 0 4px 15px rgba(57, 255, 20, 0.3);
+}
+
+.btn-toxic:hover {
+  background: var(--toxic-cyan);
+  box-shadow: 0 6px 25px rgba(0, 245, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-toxic:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   INPUT STYLES
+   ============================================ */
+
+input, textarea {
+  font-family: var(--font-primary);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  font-size: 0.95rem;
+  transition: all var(--transition-base);
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--toxic-green);
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.2);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-dim);
+}

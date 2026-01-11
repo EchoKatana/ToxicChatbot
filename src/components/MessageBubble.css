@@ -1,0 +1,128 @@
+.message-wrapper {
+    display: flex;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+    align-items: flex-end;
+    width: 100%;
+}
+
+.message-wrapper.bot {
+    justify-content: flex-start;
+}
+
+.message-wrapper.user {
+    justify-content: flex-end;
+}
+
+/* Avatars */
+.bot-avatar,
+.user-avatar {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.bot-avatar {
+    background: var(--gradient-evil);
+    box-shadow: var(--glow-purple);
+}
+
+.user-avatar {
+    background: var(--bg-tertiary);
+    border: 2px solid var(--toxic-cyan);
+}
+
+.avatar-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--gradient-evil);
+    opacity: 0.3;
+    animation: pulse-glow 2s infinite;
+}
+
+/* Message Bubbles */
+.message-bubble {
+    max-width: 65%;
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-lg);
+    position: relative;
+    word-wrap: break-word;
+    animation: slideIn 0.3s var(--transition-base);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.bot-bubble {
+    background: var(--bg-secondary);
+    border: 2px solid var(--toxic-green);
+    border-top-left-radius: 4px;
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.3),
+        inset 0 0 20px rgba(57, 255, 20, 0.05);
+}
+
+.user-bubble {
+    background: linear-gradient(135deg, var(--toxic-cyan) 0%, var(--toxic-purple) 100%);
+    border-top-right-radius: 4px;
+    color: var(--bg-primary);
+    box-shadow: 0 4px 15px rgba(0, 245, 255, 0.3);
+}
+
+.message-text {
+    margin: 0;
+    line-height: 1.5;
+    font-size: 0.95rem;
+    margin-bottom: var(--space-xs);
+}
+
+.message-image {
+    margin-top: var(--space-sm);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.message-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.message-time {
+    font-size: 0.7rem;
+    opacity: 0.6;
+    display: block;
+    text-align: right;
+    margin-top: var(--space-xs);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .message-bubble {
+        max-width: 80%;
+    }
+
+    .bot-avatar,
+    .user-avatar {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+}
