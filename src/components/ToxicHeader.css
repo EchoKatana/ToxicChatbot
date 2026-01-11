@@ -1,37 +1,40 @@
 .toxic-header {
-    background: var(--bg-panel);
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid var(--border-light);
+    padding: 1.25rem 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: var(--shadow-sm);
-    z-index: 50;
-    height: 70px;
-}
-
-.header-content {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    z-index: 100;
 }
 
 .header-left {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.25rem;
 }
 
 .logo-container {
-    font-size: 2rem;
-    line-height: 1;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, var(--p-accent), var(--p-vibrant));
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    position: relative;
 }
 
-/* Remove glow elements */
 .logo-glow {
-    display: none;
+    position: absolute;
+    inset: -6px;
+    background: inherit;
+    filter: blur(12px);
+    opacity: 0.4;
+    z-index: -1;
 }
 
 .header-text {
@@ -40,19 +43,22 @@
 }
 
 .header-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--text-main);
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: white;
     margin: 0;
 }
 
 .header-subtitle {
     font-size: 0.85rem;
-    color: var(--primary-color);
-    font-weight: 500;
+    font-weight: 600;
+    color: var(--p-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.9;
 }
 
-/* Hide mode indicator completely for demo */
 .mood-indicator {
     display: none !important;
 }

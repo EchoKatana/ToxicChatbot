@@ -1,76 +1,42 @@
 .app {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 92vh;
+  width: 95vw;
+  max-width: 1100px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--glass-shadow);
   overflow: hidden;
-  background-color: #f0f2f5;
-  /* Light fallback */
+  position: relative;
+  transition: var(--transition);
 }
 
-/* Family Theme - Premium Clean Look */
-.family-theme {
-  /* Override global variables for light theme */
-  --bg-primary: #f0f2f5;
-  --bg-secondary: #ffffff;
-  --bg-tertiary: #e4e6eb;
-
-  --toxic-green: #4CAF50;
-  --toxic-cyan: #2196F3;
-  --toxic-purple: #9C27B0;
-
-  --text-primary: #1c1e21;
-  --text-secondary: #65676b;
-  --text-dim: #8a8d91;
-
-  --gradient-evil: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
-  --glow-green: 0 0 10px rgba(76, 175, 80, 0.3);
-}
-
-.family-theme .chat-container {
-  background: transparent;
-  /* Let app background show through */
-}
-
-.family-theme .chat-container::before {
-  /* Remove cyber grid for family mode */
-  display: none;
+@media (max-width: 768px) {
+  .app {
+    height: 100vh;
+    width: 100vw;
+    border-radius: 0;
+  }
 }
 
 .chat-container {
   flex: 1;
   overflow-y: auto;
-  background: var(--bg-primary);
-  position: relative;
-}
-
-/* Original Cyber grid (keeps it if we ever switch back to toxic via class) */
-.chat-container:not(.family-theme .chat-container)::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image:
-    linear-gradient(rgba(57, 255, 20, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(57, 255, 20, 0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
-  pointer-events: none;
-  z-index: 0;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  scroll-behavior: smooth;
 }
 
 .messages-area {
-  max-width: 900px;
-  /* Narrower for better reading */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 850px;
   margin: 0 auto;
-  padding: var(--space-xl);
-  position: relative;
-  z-index: 1;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .messages-area {
-    padding: var(--space-lg);
-  }
+  width: 100%;
 }

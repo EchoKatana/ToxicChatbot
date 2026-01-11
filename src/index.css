@@ -1,32 +1,35 @@
 /* ============================================
-   PREMIUM GLASS AI - DESIGN SYSTEM
+   PREMIUM DARK GLASS - DESIGN SYSTEM
    ============================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  /* Colors - Premium Vibrant Palette */
-  --p-accent: #6366f1;
-  /* Indigo */
-  --p-accent-bright: #818cf8;
-  --p-vibrant: #ec4899;
-  /* Pink */
+  /* Colors - Vibrant Dark Palette */
+  --p-accent: #818cf8;
+  /* Light Indigo */
+  --p-accent-dark: #4f46e5;
+  --p-vibrant: #f472b6;
+  /* Light Pink */
 
-  /* Glass Surfaces */
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.5);
-  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-  --glass-blur: blur(12px);
+  /* Glass Surfaces - DARK */
+  --glass-bg: rgba(15, 23, 42, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  --glass-blur: blur(16px);
 
   /* Text */
-  --p-text-main: #1e293b;
-  --p-text-muted: #64748b;
+  --p-text-main: #f8fafc;
+  --p-text-muted: #94a3b8;
   --p-text-light: #ffffff;
 
-  /* Background Mesh Gradient Colors */
-  --m-1: #e0e7ff;
-  --m-2: #fae8ff;
-  --m-3: #f1f5f9;
+  /* Background Mesh Gradient Colors - DARK */
+  --m-1: #0f172a;
+  /* Slate 900 */
+  --m-2: #1e1b4b;
+  /* Indigo 950 */
+  --m-3: #2e1065;
+  /* Violet 950 */
 
   /* Spacing & Radius */
   --radius-xl: 1.5rem;
@@ -46,12 +49,12 @@
 body {
   font-family: var(--font-p);
   color: var(--p-text-main);
-  background-color: var(--m-3);
+  background-color: #020617;
   background-image:
-    radial-gradient(at 0% 0%, var(--m-1) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, var(--m-2) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, var(--m-1) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, var(--m-2) 0px, transparent 50%);
+    radial-gradient(at 0% 0%, var(--m-2) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, var(--m-3) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, var(--m-2) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, var(--m-3) 0px, transparent 50%);
   background-attachment: fixed;
   height: 100vh;
   overflow: hidden;
@@ -81,10 +84,6 @@ body {
   }
 }
 
-.animate-message {
-  animation: messageSlide 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-}
-
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
@@ -95,10 +94,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.2);
 }
