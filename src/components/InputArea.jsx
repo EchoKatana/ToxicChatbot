@@ -62,7 +62,7 @@ export default function InputArea({ onSendMessage, isTyping, placeholder }) {
                         <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                     </svg>
                 </button>
+            </form>
         </div>
-        </form >
     );
 }
