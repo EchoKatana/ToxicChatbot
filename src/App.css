@@ -8,8 +8,27 @@
 }
 
 /* Family Theme - Premium Clean Look */
+.family-theme {
+  /* Override global variables for light theme */
+  --bg-primary: #f0f2f5;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #e4e6eb;
+
+  --toxic-green: #4CAF50;
+  --toxic-cyan: #2196F3;
+  --toxic-purple: #9C27B0;
+
+  --text-primary: #1c1e21;
+  --text-secondary: #65676b;
+  --text-dim: #8a8d91;
+
+  --gradient-evil: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
+  --glow-green: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
 .family-theme .chat-container {
-  background: linear-gradient(135deg, #e0f7fa 0%, #f1f8e9 100%);
+  background: transparent;
+  /* Let app background show through */
 }
 
 .family-theme .chat-container::before {
