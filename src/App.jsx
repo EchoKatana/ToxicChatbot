@@ -3,7 +3,7 @@ import ToxicHeader from './components/ToxicHeader';
 import MessageBubble from './components/MessageBubble';
 import TypingIndicator from './components/TypingIndicator';
 import InputArea from './components/InputArea';
-import { shouldSendMeme } from './chatEngine';
+// import { shouldSendMeme } from './chatEngine'; // Disabled - no random memes
 import './App.css';
 
 // Import meme image
@@ -69,18 +69,18 @@ function App() {
       setMessages(prev => [...prev, botMessage]);
       setIsTyping(false);
 
-      // Randomly send meme after response
-      if (shouldSendMeme()) {
-        setTimeout(() => {
-          const memeMessage = {
-            id: Date.now() + 1,
-            image: turkishMeme,
-            isBot: true,
-            timestamp: Date.now(),
-          };
-          setMessages(prev => [...prev, memeMessage]);
-        }, 1000);
-      }
+      // Randomly send meme after response - DISABLED
+      // if (shouldSendMeme()) {
+      //   setTimeout(() => {
+      //     const memeMessage = {
+      //       id: Date.now() + 1,
+      //       image: turkishMeme,
+      //       isBot: true,
+      //       timestamp: Date.now(),
+      //     };
+      //     setMessages(prev => [...prev, memeMessage]);
+      //   }, 1000);
+      // }
     } catch (error) {
       console.error('Error:', error);
       const errorMessage = {
