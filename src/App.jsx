@@ -13,7 +13,7 @@ function App() {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Ya selam... Ne istiyorsun? 😤",
+      text: "Merhaba! Ben FriendlyBot 😊 Size nasıl yardımcı olabilirim?",
       isBot: true,
       timestamp: Date.now(),
     }
@@ -23,7 +23,7 @@ function App() {
   const chatEndRef = useRef(null);
 
   const scrollToBottom = () => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -31,6 +31,8 @@ function App() {
   }, [messages, isTyping]);
 
   const handleSendMessage = async (text) => {
+    if (!text.trim()) return;
+
     // Add user message
     const userMessage = {
       id: Date.now(),
@@ -54,20 +56,19 @@ function App() {
       });
 
       if (!response.ok) {
-        throw new Error('Backend yanıt vermedi moruk 😢');
+        throw new Error('Bağlantı sorunu oluştu, lütfen tekrar deneyin 🙏');
       }
 
       const data = await response.json();
 
       // Add bot response
       const botMessage = {
-        id: Date.now(),
+        id: Date.now() + 1,
         text: data.response,
         isBot: true,
         timestamp: Date.now(),
       };
       setMessages(prev => [...prev, botMessage]);
-      setIsTyping(false);
 
       // Randomly send meme after response - DISABLED
       // if (shouldSendMeme()) {
@@ -84,40 +85,55 @@ function App() {
     } catch (error) {
       console.error('Error:', error);
       const errorMessage = {
-        id: Date.now(),
-        text: 'Ya backend çalışmıyo galiba kanka 😭 Server açık mı kontrol et!',
+        id: Date.now() + 1,
+        text: "Üzgünüm, şu an bağlantı kuramıyorum. Lütfen biraz sonra tekrar dener misiniz? 😔",
         isBot: true,
         timestamp: Date.now(),
       };
       setMessages(prev => [...prev, errorMessage]);
+    } finally {
       setIsTyping(false);
     }
   };
 
   return (
-    <div className="app">
+    <div className={`app ${mode === 'family' ? 'family-theme' : ''}`}>
       <ToxicHeader mode={mode} setMode={setMode} />
 
-      <div className="chat-container">
+      <main className="chat-container">
         <div className="messages-area">
-          {messages.map(message => (
-            <MessageBubble
-              key={message.id}
-              message={message}
-              isBot={message.isBot}
-            />
+          {messages.map((msg) => (
+            <div key={msg.id} className={`message-wrapper ${msg.isBot ? 'bot' : 'user'}`}>
+              <div className="message-avatar">
+                {msg.isBot ? (mode === 'family' ? '😊' : '💀') : '👤'}
+              </div>
+              <div className="message-bubble">
+                {msg.image && (
+                  <img src={msg.image} alt="Meme" className="message-image" />
+                )}
+                <p>{msg.text}</p>
+                <span className="timestamp">
+                  {new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                </span>
+              </div>
+            </div>
           ))}
 
-          {isTyping && <TypingIndicator />}
-
+          {isTyping && (
+            <div className="message-wrapper bot">
+              <div className="message-avatar">{mode === 'family' ? '😊' : '💀'}</div>
+              <div className="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          )}
           <div ref={chatEndRef} />
         </div>
-      </div>
+      </main>
 
-      <InputArea
-        onSendMessage={handleSendMessage}
-        isTyping={isTyping}
-      />
+      <InputArea onSendMessage={handleSendMessage} placeholder="Nazikçe bir şeyler sorabilirsiniz..." />
     </div>
   );
 }

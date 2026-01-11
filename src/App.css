@@ -3,6 +3,18 @@
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
+  background-color: #f0f2f5;
+  /* Light fallback */
+}
+
+/* Family Theme - Premium Clean Look */
+.family-theme .chat-container {
+  background: linear-gradient(135deg, #e0f7fa 0%, #f1f8e9 100%);
+}
+
+.family-theme .chat-container::before {
+  /* Remove cyber grid for family mode */
+  display: none;
 }
 
 .chat-container {
@@ -12,8 +24,8 @@
   position: relative;
 }
 
-/* Cyber grid background effect */
-.chat-container::before {
+/* Original Cyber grid (keeps it if we ever switch back to toxic via class) */
+.chat-container:not(.family-theme .chat-container)::before {
   content: '';
   position: absolute;
   top: 0;
@@ -29,28 +41,12 @@
 }
 
 .messages-area {
-  max-width: 1200px;
+  max-width: 900px;
+  /* Narrower for better reading */
   margin: 0 auto;
   padding: var(--space-xl);
   position: relative;
   z-index: 1;
-}
-
-/* Scanline effect (subtle) */
-.app::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(to bottom,
-      transparent 50%,
-      rgba(0, 0, 0, 0.05) 50%);
-  background-size: 100% 4px;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.3;
 }
 
 /* Responsive */

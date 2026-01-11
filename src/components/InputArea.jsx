@@ -1,39 +1,52 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import './InputArea.css';
 
-export default function InputArea({ onSendMessage, isTyping }) {
-    const [input, setInput] = useState('');
+export default function InputArea({ onSendMessage, isTyping, placeholder }) {
+    const [text, setText] = useState('');
+    const textareaRef = useRef(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (input.trim() && !isTyping) {
-            onSendMessage(input.trim());
-            setInput('');
+        if (text.trim() && !isTyping) {
+            onSendMessage(text);
+            setText('');
+            // Reset height
+            if (textareaRef.current) {
+                textareaRef.current.style.height = 'auto';
+            }
         }
     };
 
-    const handleKeyPress = (e) => {
+    const handleKeyDown = (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             handleSubmit(e);
         }
     };
 
+    const handleChange = (e) => {
+        setText(e.target.value);
+        // Auto-resize
+        e.target.style.height = 'auto';
+        e.target.style.height = `${e.target.scrollHeight}px`;
+    };
+
     return (
-        <form className="input-area" onSubmit={handleSubmit}>
-            <div className="input-container">
+        <div className="input-area">
+            <form onSubmit={handleSubmit} className="input-form">
                 <textarea
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    onKeyPress={handleKeyPress}
-                    placeholder="Sor bakalım... (risk senin)"
+                    ref={textareaRef}
+                    value={text}
+                    onChange={handleChange}
+                    onKeyDown={handleKeyDown}
+                    placeholder={placeholder || "Sor bakalım... (risk senin)"}
+                    rows={1}
                     disabled={isTyping}
-                    rows="1"
                 />
                 <button
                     type="submit"
                     className="btn-send"
-                    disabled={!input.trim() || isTyping}
+                    disabled={!text.trim() || isTyping}
                 >
                     <svg
                         width="24"
@@ -49,7 +62,7 @@ export default function InputArea({ onSendMessage, isTyping }) {
                         <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                     </svg>
                 </button>
-            </div>
-        </form>
+        </div>
+        </form >
     );
 }
