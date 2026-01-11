@@ -19,6 +19,7 @@ function App() {
     }
   ]);
   const [isTyping, setIsTyping] = useState(false);
+  const [mode, setMode] = useState('toxic'); // 'toxic' or 'family'
   const chatEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -43,13 +44,13 @@ function App() {
     setIsTyping(true);
 
     try {
-      // Call real backend API (production)
-      const response = await fetch('https://toxicchatbot.onrender.com/api/chat', {
+      // Call real backend API (localhost for testing)
+      const response = await fetch('http://localhost:3000/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: text }),
+        body: JSON.stringify({ message: text, mode: mode }),
       });
 
       if (!response.ok) {
@@ -95,7 +96,7 @@ function App() {
 
   return (
     <div className="app">
-      <ToxicHeader />
+      <ToxicHeader mode={mode} setMode={setMode} />
 
       <div className="chat-container">
         <div className="messages-area">
