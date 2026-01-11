@@ -19,7 +19,7 @@ function App() {
     }
   ]);
   const [isTyping, setIsTyping] = useState(false);
-  const [mode, setMode] = useState('toxic'); // 'toxic' or 'family'
+  const [mode, setMode] = useState('family'); // Default to family mode for presentation // 'toxic' or 'family'
   const chatEndRef = useRef(null);
 
   const scrollToBottom = () => {
