@@ -43,8 +43,8 @@ function App() {
     setIsTyping(true);
 
     try {
-      // Call real backend API
-      const response = await fetch('http://localhost:3000/api/chat', {
+      // Call real backend API (production)
+      const response = await fetch('https://toxicchatbot.onrender.com/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
